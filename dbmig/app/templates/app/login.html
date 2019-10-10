@@ -1,0 +1,21 @@
+{% extends 'app/dash.html' %}
+{% block content %}
+
+
+	<section class="container">
+			<section class="login-form">
+				<form method="post" action="" role="login">
+					<img src="media/logo.png" width = "170" class="img-responsive" alt="" />
+					<p>Sign in to your account</p>
+					<input type="text" name="username" placeholder="Username" required class="form-control input-lg" />
+					<input type="password" name="password" placeholder="Password" required class="form-control input-lg" />
+					<button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
+				</form>
+			</section>
+	</section>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+{% endblock %}
+

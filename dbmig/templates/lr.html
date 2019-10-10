@@ -1,0 +1,70 @@
+{% extends "dash.html" %}
+{% block title %}::Lorry Receipt::{% endblock %}
+{% block das %}active{% endblock %}
+{% load static %}
+
+
+{% block content %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-white mb-5">Lorry Receipt</h3>
+
+
+                    <form action="." method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        Upload excel file
+                        <input type="file" name="excel_file" style="color: #fff; border: 1px solid black; padding: 5px;" required="required">    
+                        <br>
+                        <input type="submit"
+                        value="Upload"
+                        style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;">
+                        <br>
+                        <input type="checkbox" name="LR" value="LR"> LR 
+                        <input type="checkbox" name="Replace" value="Replace"> Replace<br>
+                        <br>
+                        <div class = "cell">
+                            {% for row in excel_data %}
+                            {% for cell in row %}
+                            {{ cell  }}&nbsp;&nbsp;
+                            {% endfor %}
+                            <br>
+                            {% endfor %}
+                            {% comment %} <button style = "text-white;" formaction= "{% url 'app:validate' %}">Validate</button> {% endcomment %}
+                        </div>
+                        <input type='submit' value='submit'>
+                    </form>
+
+
+
+                </div>
+            </div>
+            <!-- row -->
+
+
+    <script src="{% static 'app/js/jquery-3.3.1.min.js' %}"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="{% static 'app/js/moment.min.js' %}"></script>
+    <!-- https://momentjs.com/ -->
+    <script src="{% static 'app/js/Chart.min.js' %}"></script>
+    <!-- http://www.chartjs.org/docs/latest/ -->
+    <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+    <!-- https://getbootstrap.com/ -->
+    <script src="{% static 'app/js/tooplate-scripts.js' %}"></script>
+
+    
+<style>
+.container{
+
+    padding-top:100px;
+}
+form{
+    padding-top:50px;
+    color:#fff;
+}
+{% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+{% extends 'app/dash.html' %}
+{% block content %}
+
+<h1>USER REGISTRATION</h1>
+<form role="form" action="" method="POST">
+    {% csrf_token %}
+    {{ UserProfileform.as_table }}
+    <button type="submit">Save</button>
+</form>
+<style>
+h1 
+{
+    text-align:center;
+}
+form
+{
+    width:500px;
+    padding-top:100px;
+    padding-left:350px;    
+}
+</style>
+{% endblock %}

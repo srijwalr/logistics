@@ -1,0 +1,18 @@
+{% extends "dash.html" %}
+
+{% block title %}:: Register :: {{ super }}{% endblock %}
+
+{% block content %}
+<form method="POST" action="{% url 'app:register' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="button-primary" value="Sign Up">
+</form>
+<style>
+form{
+    padding-top:100px;
+    padding-left:400px; 
+    color:#fff;
+}
+</style>
+{% endblock %}
