@@ -2,57 +2,39 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.core.validators import FileExtensionValidator
-from .models import Lrgeneratingmtbl, Companywarehousemaster, Vehiclemaster
+from .models import Lrgeneratingmtbl, Companywarehousemaster, Vehiclemaster, Lrtransation, Lrdocument
 from master.models import Cosingneemaster, Routemaster
 from . import models
-
-
-class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-    # def __init__(self, *args, **kwargs):
-    #     super(UserForm, self).__init__(*args, **kwargs)
-    #     try:
-    #         self.fields['usrd_assinedwhm'].initial = self.instance.user.usrd_assinedwhm
-    #     except User.DoesNotExist:
-    #         pass
-    class Meta:
-        model = User
-        fields = '__all__'
-
-class FormUploadFileData(forms.Form):
-    excel_file = forms.FileField(label='Excel File',required=False,validators=[FileExtensionValidator(['xlxs'])])
-# class ProfileForm(forms.ModelForm):
-#     first_name = forms.CharField(max_length=256)
-#     last_name = forms.CharField(max_length=256)
-
-#     def __init__(self, *args, **kwargs):
-#         super(ProfileForm, self).__init__(*args, **kwargs)
-#         try:
-#             self.fields['first_name'].initial = self.instance.user.first_name
-#             self.fields['last_name'].initial = self.instance.user.last_name
-#             self.fields['usrd_assinedwhm'].initial = self.instance.user.usrd_assinedwhm
-#         except User.DoesNotExist:
-#             pass
-
-#     class Meta:
-#          fields = ['first_name', 'last_name', 'usrd_usrcatpntr','usrd_assinedwhm','usrd_pwrd','usrd_active']
+from app.models import Userdetails
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
 # class UserForm(forms.ModelForm):
 #     password = forms.CharField(widget=forms.PasswordInput)
-
+#     # def __init__(self, *args, **kwargs):
+#     #     super(UserForm, self).__init__(*args, **kwargs)
+#     #     try:
+#     #         self.fields['usrd_assinedwhm'].initial = self.instance.user.usrd_assinedwhm
+#     #     except User.DoesNotExist:
+#     #         pass
 #     class Meta:
 #         model = User
-#         fields = ['username','password']
+#         fields = ('username','first_name','password')
 
-# class ConsigneeForm(forms.ModelForm):
-    
-#     class Meta:
-#         model : Cosingneemaster
+class UserdetailsCreationForm(UserCreationForm):
 
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.fields['consgnem_routepntr'].queryset = Routemaster.objects.none()
+    class Meta:
+        model = Userdetails
+        fields = ('usrd_name','usrd_assinedwhm','usrd_active','usrd_usrcatpntr','username')
+
+class UserdetailsChangeForm(UserChangeForm):
+
+    class Meta:
+        model = Userdetails
+        fields = ('usrd_name', 'password','usrd_assinedwhm','usrd_usrcatpntr','usrd_active')
+
+class FormUploadFileData(forms.Form):
+    excel_file = forms.FileField(label='Excel File',required=False,validators=[FileExtensionValidator(['xlxs'])])
 
 # class LoginForm(forms.Form): 
 #     username = forms.CharField()
@@ -65,17 +47,36 @@ class FormUploadFileData(forms.Form):
 #         user = authenticate(username=username, password=password)
 #         if user is None:
 #             raise forms.ValidationError('Wrong password or login')
-#         else:
+#         else: 
 #             self.user = user
 #         return cleaned_data
+class CompanywarehouseForm(forms.ModelForm):
+
+    class Meta:
+        model = Companywarehousemaster
+        fields = ('com_wmasname','com_wmasdesc','com_wmasaddress','com_wmasactive','com_wmasremarks')
+
 
 class LrgeneratingmtblForm(forms.ModelForm):
     lrg_vehcode = forms.ModelChoiceField(required=False, label='Vehicle Code', queryset=Vehiclemaster.objects.all())
-
     class Meta:
         model = Lrgeneratingmtbl
         fields = ('lrg_whmpntr','lrg_frttyp','lrg_vehcode')
 
+class LrtransationForm(forms.ModelForm):
+
+    class Meta:
+        model = Lrtransation
+        fields = ('lrtran_consgnrpntr','lrtran_frtyppntr','lrtran_vehmaspntr','lrtran_vehcatpntr','lrtran_driverdtls','lrtran_frtypebillno')
+
     # def __init__(self, *args, **kwargs):
     #     super().__init__(*args, **kwargs)
     #     self.fields['lrg_whmpntr'].queryset = Lrgeneratingmtbl.objects.none()
+
+# class LrdocumentForm(forms.ModelForm):
+
+#     class Meta:
+#         model = Lrdocument
+#         fields = ('lrdoc_data','lrdoc_remarks')
+
+

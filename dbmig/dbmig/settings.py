@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'app',
     'master',
+    'accounts',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -105,6 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 AUTH_USER_MODEL = 'app.Userdetails'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -121,8 +125,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-# LOGIN_REDIRECT_URL = 'login.html'
-# LOGIN_URL = 'app.views.login'
+LOGIN_URL:'app:signin'
+LOGIN_REDIRECT_URL = 'app:dash'
+LOGOUT_REDIRECT_URL = 'app:signin'
+
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (

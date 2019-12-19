@@ -10,8 +10,7 @@ class CosingneemasterForm(forms.ModelForm):
 
     class Meta:
         model = Cosingneemaster
-        fields = '__all__'
-        # fields = ('lrg_whmpntr','lrg_frttyp','lrg_vehcode')
+        fields = ('consgnem_code','consgnem_name','consgnem_branch','consgnem_address','consgnem_city','consgnem_district','consgnem_pincode','consgnem_routtyp','consgnem_gsttin','consgnem_pan','consgnem_distance','consgnem_active')
 
 # class ConsigneeForm(forms.ModelForm):
     

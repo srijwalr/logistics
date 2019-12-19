@@ -9,7 +9,9 @@ admin.autodiscover()
 urlpatterns = [
     path('admin/', admin.site.urls),
     url('', include('app.urls')),
+    url('accounts/', include('accounts.urls')),
     url('master/', include('master.urls')),
+
 ]
 
 if settings.DEBUG:

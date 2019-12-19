@@ -1,10 +1,3 @@
-/*
-    Theme Name: NiceAdmin
-    Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-    Author: BootstrapMade
-    Author URL: https://bootstrapmade.com
-*/
-/* Import fonts */
 
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
 
@@ -699,9 +692,9 @@ ul.sidebar-menu li a{
 
     transition: all 0.3s ease;
 
-    border-right: 1px solid #D7D7D7;
+    border-right: 1px solid #2e3b46;     /*grid */
 
-    border-bottom: 1px solid #D7D7D7;
+    border-bottom: 1px solid #2e3b46;
 
 }
 
@@ -1029,7 +1022,7 @@ ul.sidebar-menu li.active a i {
 
     background: rgba(54,66,74,1);
 
-    border-bottom: 1px solid #f1f2f7;
+    border-bottom: 1px solid #2e3b46;
 
 }
 
@@ -1610,7 +1603,7 @@ div[data-role="editor-toolbar"] {
 
 .top-nav .username {
 
-    font-size: 13px;
+    font-size: 16px;
 
     color: #bdbdbd;
 

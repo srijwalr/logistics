@@ -59,7 +59,7 @@
                 <a href="#"><i class="icon_profile"></i> My Profile</a>
               </li>
               <li>
-                <a href="{% url 'app:sign_out' %}"><i class="icon_key_alt"></i> Log Out</a>
+                <a href="{% url 'app:signout' %}"><i class="icon_key_alt"></i> Log Out</a>
               </li>
             </ul>
           </li>
@@ -76,7 +76,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
           <li class="">
-            <a class="" href="#">
+            <a class="" href="{% url 'app:dash' %}">
                           <i class="icon_house_alt"></i>
                           <span>Dashboard</span>
                       </a>
@@ -90,14 +90,14 @@
                       </a>
             <ul class="sub">
               <li><a class="" href="{% url 'master:consignee' %}">Consignee</a></li>
-              <li><a class="" href="#">Product</a></li>
-              <li><a class="" href="#">Product Category</a></li>
-              <li><a class="" href="#">Product Sub Category</a></li>
-              <li><a class="" href="#">Vehicle</a></li>
-              <li><a class="" href="#">Vehicle Type</a></li>
-              <li><a class="" href="#">Freight Type</a></li>
-              <li><a class="" href="#">Route</a></li>
-              <li><a class="" href="#">Freight for Route</a></li>
+              <li><a class="" href="{% url 'master:product' %}">Product</a></li>
+              <li><a class="" href="{% url 'master:productcat' %}">Product Category</a></li>
+              <li><a class="" href="{% url 'master:psubcat' %}">Product Sub Category</a></li>
+              <li><a class="" href="{% url 'master:vehicle' %}">Vehicle</a></li>
+              <li><a class="" href="{% url 'master:vtype' %}">Vehicle Type</a></li>
+              <li><a class="" href="{% url 'master:ftype' %}">Freight Type</a></li>
+              <li><a class="" href="{% url 'master:route' %}">Route</a></li>
+              <li><a class="" href="{% url 'master:froute' %}">Freight for Route</a></li>
             </ul>
           </li>
           {% endif %}
@@ -108,9 +108,9 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="#">Lorry Receipt</a></li>
+              <li><a class="" href="{% url 'app:lr' %}">Lorry Receipt</a></li>
               <li><a class="" href="#">Return Receipt</a></li>
-              <li><a class="" href="#">POD Closure</a></li>
+              <li><a class="" href="{% url 'app:podc' %}">POD Closure</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -123,6 +123,7 @@
               <li><a class="" href="#">Duplicate Printing</a></li>
               <li><a class="" href="#">LR Cancellation</a></li>
               <li><a class="" href="#">LR Charges Editor</a></li>
+              <li><a class="" href="#">Vehicle no. Changer</a></li>
             </ul>
           </li>
          <li class="sub-menu ">
@@ -144,9 +145,9 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="#">Transactions</a></li>
-              <li><a class="" href="#"><span>Utilites</span></a></li>
-              <li><a class="" href="#"><span>Reports</span></a></li>
+              <li><a class="" href="{% url 'accounts:voucher' %}">Transactions</a></li>
+              <li><a class="" href="{% url 'accounts:duplicate' %}"><span>Utilites</span></a></li>
+              <li><a class="" href="{% url 'accounts:delete' %}"><span>Reports</span></a></li>
             </ul>
           </li>
           {% endif %}
@@ -176,6 +177,7 @@
 <br>
 <br> -->        
 <br>
+{% if request.user.is_superuser %}
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h3 class="display-4">USER</h1>
@@ -184,6 +186,16 @@
   </div>
 </div>
 <br>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h3 class="display-4">WAREHOUSE</h1>
+    <p class="lead">Click here to create Warehouse</p>
+    <a href="{% url 'app:whm' %}" class="btn btn-primary">Create Warehouse</a>
+  </div>
+</div>
+
+{% endif %}
 <br>
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
@@ -203,14 +215,16 @@
   </div>
 </div>
 
+{% if request.user.is_superuser %}
+
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h3 class="display-4">FLEET MANAGEMENT</h1>
       <br>
-    <img src="{% static 'fleet.png' %}" width = "1200" height="600">   
+    <img class = "img-responsive" src="{% static 'fleet.png' %}" width = "1200" height="600">   
   </div>
 </div>
-
+{% endif %}
 
 <!-- <div class="card w-50">
   <div class="card-body">
@@ -243,7 +257,7 @@
   <!--custome script for all page-->
   <script src="{% static 'app/js/scripts.js' %}"></script>
 
- 
+  
 {% endblock %}
 </body>
 
