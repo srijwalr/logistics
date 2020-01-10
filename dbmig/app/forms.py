@@ -2,8 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.core.validators import FileExtensionValidator
-from .models import Lrgeneratingmtbl, Companywarehousemaster, Vehiclemaster, Lrtransation, Lrdocument
-from master.models import Cosingneemaster, Routemaster
+from .models import Lrgeneratingmtbl, Companywarehousemaster, Vehiclemaster, Lrtransation, Lrdocument, Vehiclecategory
+from master.models import Cosingneemaster, Routemaster, Cosingnormaster
 from . import models
 from app.models import Userdetails
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
@@ -57,21 +57,25 @@ class CompanywarehouseForm(forms.ModelForm):
         fields = ('com_wmasname','com_wmasdesc','com_wmasaddress','com_wmasactive','com_wmasremarks')
 
 
-class LrgeneratingmtblForm(forms.ModelForm):
-    lrg_vehcode = forms.ModelChoiceField(required=False, label='Vehicle Code', queryset=Vehiclemaster.objects.all())
-    class Meta:
-        model = Lrgeneratingmtbl
-        fields = ('lrg_whmpntr','lrg_frttyp','lrg_vehcode')
+# class LrgeneratingmtblForm(forms.ModelForm):
+#     lrg_vehcode = forms.ModelChoiceField(required=False, label='Vehicle Code', queryset=Vehiclemaster.objects.all())
+#     class Meta:
+#         model = Lrgeneratingmtbl
+#         fields = ('lrg_whmpntr','lrg_frttyp','lrg_vehcode')
 
 class LrtransationForm(forms.ModelForm):
+
+    # lrtran_vehcatpntr = forms.ModelChoiceField(required=False, label='Vehicle Type',queryset=Vehiclemaster.objects.all())
+    # lrtran_consgnrpntr = forms.ModelChoiceField(required=False,label = 'Consignor',queryset=Cosingnormaster.objects.all())
+    lrtran_vehcatpntr = forms.ModelChoiceField(required=False,label = 'Vehicle Type',queryset=Vehiclecategory.objects.all(), widget= forms.Select(attrs={"onChange":'refresh()'}))
 
     class Meta:
         model = Lrtransation
         fields = ('lrtran_consgnrpntr','lrtran_frtyppntr','lrtran_vehmaspntr','lrtran_vehcatpntr','lrtran_driverdtls','lrtran_frtypebillno')
-
+    
     # def __init__(self, *args, **kwargs):
     #     super().__init__(*args, **kwargs)
-    #     self.fields['lrg_whmpntr'].queryset = Lrgeneratingmtbl.objects.none()
+    #     self.fields['lrtran_consgnrpntr'].queryset = Lrtransation.objects.none()
 
 # class LrdocumentForm(forms.ModelForm):
 

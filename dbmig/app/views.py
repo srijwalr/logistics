@@ -2,7 +2,7 @@
 from django.shortcuts import render
 import openpyxl
 from django.core.files.storage import FileSystemStorage
-from app.forms import UserdetailsCreationForm, FormUploadFileData, LrgeneratingmtblForm
+from app.forms import UserdetailsCreationForm, FormUploadFileData, LrtransationForm
 from django.views.generic.edit import FormView, View, CreateView
 from tablib import Dataset
 from app.models import Lrgeneratingmtbl, Companywarehousemaster, Cosingneemaster, Userdetails, Lrdocument, Lrtransation
@@ -22,7 +22,7 @@ from django.contrib import auth
 from . import forms
 from app.forms import UserdetailsCreationForm, CompanywarehouseForm
 from django.views.generic import View
-from io import BytesIO
+from io import BytesIO, StringIO
 from django.db.models import Q
 from reportlab.pdfgen import canvas
 from django.http import HttpResponse
@@ -33,16 +33,15 @@ from django_weasyprint import WeasyTemplateResponseMixin
 from weasyprint import HTML
 import tempfile
 from xhtml2pdf import pisa 
-from io import StringIO
 from django.template.loader import get_template 
 from django.template import Context 
 
 def html_to_pdf_directly(request): 
     template = get_template("lrprint.html") 
-    context = Context({'pagesize':'A4'}) 
+    context = {'pagesize':'A4'} 
     html = template.render(context) 
-    result = StringIO.StringIO() 
-    pdf = pisa.pisaDocument(StringIO.StringIO(html), dest=result) 
+    result = BytesIO() 
+    pdf = pisa.pisaDocument(StringIO(html), dest=result) 
     if not pdf.err: 
         return HttpResponse(result.getvalue(), content_type='application/pdf') 
     else: return HttpResponse('Errors') 
@@ -87,6 +86,19 @@ def generate_pdf(request):
         response.write(output.read())
 
     return response
+
+def deletelr(request):
+   return render(request, "app/lrcancel.html", {})
+
+def duplicate(request):
+   return render(request, "app/lrduplct.html", {})
+
+def change(request):
+   return render(request, "app/lrchange.html", {})
+
+def editvno(request):
+   return render(request, "app/vehicleno.html", {})
+
 
 
 class LogoutView(View):
@@ -278,7 +290,7 @@ def pod_data(request,**kwargs):
  
 class LorryReceiptView(FormView):
     template_name = 'lr.html'
-    form_class = LrgeneratingmtblForm
+    form_class = LrtransationForm
     success_url = reverse_lazy('app:validate')
 
     def get_context_data(self, **kwargs):

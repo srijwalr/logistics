@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from .models import Cosingneemaster, Productmaster, Productcategory, Productsubcategory
+from .models import Cosingneemaster, Productmaster, Productcategory, Productsubcategory, Vehiclemaster
 from . import models
 
 
@@ -36,3 +36,9 @@ class ProductsubcategoryForm(forms.ModelForm):
     class Meta:
         model = Productsubcategory 
         fields = '__all__'
+
+class VehicleForm(forms.ModelForm):
+
+    class Meta:
+        model = Vehiclemaster
+        fields =('vehmas_code','vehmas_frtyppntr','vehmas_catpntr','vehmas_drivername','vehmas_phone','vehmas_desc','vehmas_active')

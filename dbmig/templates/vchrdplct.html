@@ -7,19 +7,21 @@
 {% block content %}
 
 <div class="container">
+  <h2>Duplicate Voucher</h2>
   <br>
   <!-- Nav pills -->
   <ul class="nav nav-pills" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="pill" href="{% url 'accounts:duplicate' %}">Duplicate Voucher</a>
+      <a class="nav-link active" data-toggle="pill" href="#home">Duplicate Voucher</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{% url 'accounts:delete' %}">Voucher cancellation</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link"  href="{% url 'accounts:acchead' %}">Acounts Head create</a>
+      <a class="nav-link" href="{% url 'accounts:acchead' %}">Account Head Create</a>
     </li>
   </ul>
+
 
   <!-- Tab panes -->
   <div class="tab-content">
@@ -98,7 +100,7 @@ h2
 container
 {
     width:500px;
-    padding-top:200px;
+    padding-top:100px;
     color: #fff;
 }
 </style>

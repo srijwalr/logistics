@@ -11,14 +11,19 @@ app_name = 'app'
 urlpatterns = [
     url(r'lorry-receipt/', views.LorryReceiptView.as_view(), name='lr'),
     url(r'validate', views.validate, name='validate'),
-    url(r'print/$', views.generate_pdf, name='print'),
+    url(r'print/$', views.MyModelPrintView.as_view(), name='print'),
     url(r'podc', views.LrdocumentCreate.as_view(), name= 'podc'),
     url(r'pod', views.pod, name= 'pod'),
-    url(r'dash', views.dash,name='dash'),
+    url(r'signin', views.sign_in,name='signin'),
     url(r'whm', views.WhmCreate.as_view(),name='whm'),
-    url(r'^$',views.sign_in, name= 'signin'),
+    url(r'^$',views.dash, name= 'dash'),
     url(r'register', views.register,name='register'),
     url(r'signout', views.LogoutView.as_view(),name='signout'),
+    url(r'delete', views.deletelr,name='deletelr'),
+    url(r'change', views.change,name='change'),
+    url(r'duplicate', views.duplicate,name='duplicate'),
+    url(r'editvno', views.editvno,name='editvno'),
+    # url(r'delete_lr/$', views.delete_,name='register'),
 ]
 
 if settings.DEBUG:

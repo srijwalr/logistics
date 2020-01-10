@@ -21,7 +21,12 @@
     });
 
 function hideShow(){
-    if(document.getElementById('id_act_acc_code').value == "7")
+    if(document.getElementById('id_act_acc_code').value == "6")
+    {
+        $('#id_act_lrno').hide();
+        alert("PLEASE DO NOT MENTION SALARY , OT , SUNDAY WORKING , Etc ... IN NARRATION. !!");
+    }
+    else if(document.getElementById('id_act_acc_code').value == "7")
     {
         $('#id_act_lrno').show();
     }else if(document.getElementById('id_act_acc_code').value == "8")
@@ -102,6 +107,7 @@ function hideShow(){
             <div class="row">
                 <div class="col">
                     <h3 class="text-white mb-5">Payment Voucher</h3>
+                    <br>
                       <form method="post">
                         {% csrf_token %}
                         <div class="form-row">

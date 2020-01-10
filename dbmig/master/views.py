@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from master.forms import CosingneemasterForm , ProductmasterForm
+from master.forms import CosingneemasterForm , ProductmasterForm,VehicleForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView, CreateView
@@ -41,10 +41,11 @@ class SubcategoryCreate(CreateView):
     fields =('proscat_code','proscat_procatpntr','proscat_desc','proscat_volume','proscat_weight','proscat_width','proscat_length','proscat_slno','proscat_active','proscat_remarks')
 
 class VehicleCreate(CreateView):
-    model = Vehiclemaster
+    # model = Vehiclemaster
+    form_class = VehicleForm
     template_name = 'master/vehicle.html'
     success_url = reverse_lazy('app:dash')
-    fields =('vehmas_code','vehmas_frtyppntr','vehmas_catpntr','vehmas_drivername','vehmas_phone','vehmas_desc','vehmas_active')
+    # fields =('vehmas_code','vehmas_frtyppntr','vehmas_catpntr','vehmas_drivername','vehmas_phone','vehmas_desc','vehmas_active')
 
 class VehiceltypeCreate(CreateView):
     model = Vehiclecategory 

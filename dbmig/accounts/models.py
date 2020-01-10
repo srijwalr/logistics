@@ -102,7 +102,9 @@ class Accountswarehousemaster(models.Model):
     # class Meta:
     #     managed = False
     #     db_table = 'accountswarehousemaster'
-
+    def __str__(self):
+        return self.accwm_name
+    
 
 class Accountstransaction(models.Model):
     # act_tranid = models.AutoField(primary_key=True)

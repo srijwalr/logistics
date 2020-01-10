@@ -431,7 +431,7 @@ class Lrtransation(models.Model):
     lrtran_tripcloseuid = models.IntegerField(blank=True, null=True)
     lrtran_tripclaimno = models.CharField(max_length=150, blank=True, null=True)
     lrtran_driverdtls = models.CharField(max_length=150, blank=True, null=True, verbose_name='Driver Name')
-    lrtran_driverphone = models.CharField(max_length= 25, blank = True, null= True)
+    lrtran_driverphone = models.CharField(max_length= 25, blank = True, null= True, verbose_name='Driver Mob')
     
     # def backup_data(sender, **kwargs):
     #     instance = Lrtransation.objects.get(slug = 'id')

@@ -6,6 +6,23 @@
 
 {% block content %}
 
+<div class="container">
+  <h2>Voucher Cancellation</h2>
+  <br>
+  <!-- Nav pills -->
+  <ul class="nav nav-pills" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'accounts:duplicate' %}">Duplicate Voucher</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#home">Voucher cancellation</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'accounts:acchead' %}">Account Head Create</a>
+    </li>
+  </ul>
+
+
         <div class="container">
         <div class = "row">
             <h2> Voucher Cancellation</h2>
@@ -60,7 +77,6 @@
                     </div>
                 </div>
             </div>
-
               
   <script src="{% static 'app/js/jquery.js' %}"></script>
   <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
@@ -73,10 +89,14 @@
 <style>
 h2
 {
+    color: #fff;
+}
+container
+{
+    width:500px;
     padding-top:100px;
     color: #fff;
 }
-
 
 </style>
 

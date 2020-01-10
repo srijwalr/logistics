@@ -19,7 +19,9 @@ class Cosingnormaster(models.Model):
 
     # class Meta:
     #     managed = False
-    #     db_table = 'cosingnormaster'    
+    #     db_table = 'cosingnormaster'  
+    def __str__(self):
+        return self.consgnrm_name  
 
 class Companyzonemaster(models.Model):
     # com_zmasid = models.AutoField(primary_key=True)
@@ -260,7 +262,7 @@ class Vehiclemaster(models.Model):
     vehmas_clntpntr = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return str(self.vehmas_desc)
+        return str(self.vehmas_code)
     # class Meta:
     #     db_table = 'vehiclemaster'
 

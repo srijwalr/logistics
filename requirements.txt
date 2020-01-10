@@ -7,7 +7,6 @@ defusedxml==0.6.0
 Django==2.2.4
 django-crispy-forms==1.7.2
 django-excel==0.0.10
-django-pyodbc-azure==2.1.0.0
 django-report-builder==6.3.2
 django-weasyprint==0.5.4
 djangorestframework==3.10.2
@@ -15,7 +14,6 @@ et-xmlfile==1.0.1
 html5lib==1.0.1
 jdcal==1.4.1
 lml==0.0.9
-mysqlclient==1.4.2.post1
 odfpy==1.4.0
 openpyxl==2.6.3
 Pillow==6.2.0
@@ -25,7 +23,6 @@ pycparser==2.19
 pyexcel==0.5.15
 pyexcel-io==0.5.20
 pyexcel-webio==0.1.4
-pyodbc==4.0.27
 Pyphen==0.9.5
 python-dateutil==2.8.0
 pytz==2019.2
