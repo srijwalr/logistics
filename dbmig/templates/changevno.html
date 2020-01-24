@@ -25,7 +25,38 @@
             <br>
             <br>
     </div>    
-            
+
+            <div class="row">
+                <div class="col">
+                    <div class="panel panel-default">
+                    {% if lrdtls %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Current Vehicle number</th>
+                                <th>Vehicle size</th>
+                                <th>Vehicle details<th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in lrdtls %}
+                                <tr>
+                                    <td>{{ i.lrtran_vehmaspntr }} </td>
+                                    <td>{{ i.lrtran_vehcatpntr }} </td>
+                                    <td>{{ i.lrtran_vehmaspntr.vehmas_desc }} </td> 
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% endif %}
+                    </div>
+                </div>
+                Enter new Vehicle no.:
+                <input type="text" name="Amount"><br>
+                <br>
+                 <a href="#" class="btn btn-default">Change</button></a></p>
+            </div>
+                        
 
   <script src="{% static 'app/js/jquery.js' %}"></script>
   <script src="{% static 'app/js/bootstrap.min.js' %}"></script>

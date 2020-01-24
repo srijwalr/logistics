@@ -1,11 +1,10 @@
 {% extends "dash.html" %}
-{% block title %}::Duplicate LR Print::{% endblock %}
+{% block title %}::LR Charges Editor::{% endblock %}
 {% block transactions %}active{% endblock %}
 {% load static %}
 {% load crispy_forms_tags %}
 
 {% block content %}
-
 
   <!-- Tab panes -->
   <div class="tab-content">
@@ -13,9 +12,9 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h2> Duplicate LR</h2>
+                    <h2>LR Charges Editor</h2>
                     <br>
-                    <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'app:duplicate' %}">
+                    <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'app:change' %}">
                         <div class="form-group">
                         <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
                     </div>
@@ -26,10 +25,10 @@
             <br>
             <br>
     </div>    
-                <div class="row">
+            <div class="row">
                 <div class="col">
                     <div class="panel panel-default">
-                     {% if lrdtls %}
+                    {% if lrdtls %}
                     <table class="table">
                         <thead>
                             <tr>
@@ -39,7 +38,6 @@
                                 <th>Route type<th>
                                 <th>Vehicle number<th>
                                 <th>Vehicle size<th>
-                                <th>Action<th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,18 +49,29 @@
                                     <td>{{ i.lrtran_frtyppntr }} </td>
                                     <td>{{ i.lrtran_vehmaspntr }} </td>
                                     <td>{{ i.lrtran_vehcatpntr }} </td>
-                                    <td>
-                                        <a href="{{ '/media/LrMultipleWPCOTP2704.pdf' }}">Print</button></a></p>
-                                    </td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                     </table>
+                    <br>
+                    <br>
+                    <br>
+
                     {% endif %}
                     </div>
                 </div>
-            </div>      
-              
+               Additional:  <select>
+               <option value="1">Freight Charge</option>
+               <option value="2">Unload Charge</option>
+               <option value="3">Halt</option>
+               <option value="4">Other Charge</option>
+               </select>   
+                <input type="text" name="Amount"><br>
+                <br>
+                 <a href="#" class="btn btn-default">ADD</button></a></p>
+
+            </div>  
+
   <script src="{% static 'app/js/jquery.js' %}"></script>
   <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
   <!-- nice scroll -->
@@ -83,6 +92,7 @@ container
     padding-top:100px;
     color: #fff;
 }
+
 </style>
 
-{% endblock %}
+{% endblock %}  

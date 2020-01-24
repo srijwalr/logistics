@@ -109,8 +109,8 @@
                       </a>
             <ul class="sub">
               <li><a class="" href="{% url 'app:lr' %}">Lorry Receipt</a></li>
-              <li><a class="" href="#">Return Receipt</a></li>
-              <li><a class="" href="{% url 'app:podc' %}">POD Closure</a></li>
+              <li><a class="" href="{% url 'app:rreceipt' %}">Return Receipt</a></li>
+              <li><a class="" href="{% url 'app:pod' %}">POD Closure</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -146,7 +146,16 @@
                       </a>
             <ul class="sub">
               <li><a class="" href="{% url 'accounts:voucher' %}">Transactions</a></li>
-              <li><a class="" href="{% url 'accounts:duplicate' %}"><span>Utilites</span></a></li>
+                  <nav class="nav nav-pills flex-column">
+                  <a class="nav-link ml-3" href={% url 'accounts:voucher' %}>Payment</a>
+                  <a class="nav-link ml-3" href={% url 'accounts:receipt' %}>Receipt</a>
+                  </nav>
+              <li><a class="" href="{% url 'accounts:dplct' %}"><span>Utilites</span></a></li>
+                  <nav class="nav nav-pills flex-column">
+                  <a class="nav-link ml-3" href={% url 'accounts:delete' %}>Voucher Cancellation</a>
+                  <a class="nav-link ml-3" href={% url 'accounts:dplct' %}>Duplicate Voucher</a>
+                  <a class="nav-link ml-3" href={% url 'accounts:acchead' %}>Accounts Head Creator</a>
+                  </nav>
               <li><a class="" href="{% url 'accounts:delete' %}"><span>Reports</span></a></li>
             </ul>
           </li>

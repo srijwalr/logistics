@@ -109,8 +109,8 @@
                       </a>
             <ul class="sub">
               <li><a class="" href="{% url 'app:lr' %}">Lorry Receipt</a></li>
-              <li><a class="" href="#">Return Receipt</a></li>
-              <li><a class="" href="{% url 'app:podc' %}">POD Closure</a></li>
+              <li><a class="" href="{% url 'app:rreceipt' %}">Return Receipt</a></li>
+              <li><a class="" href="{% url 'app:pod' %}">POD Closure</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -138,7 +138,7 @@
             </ul>
           </li>
           {% if request.user.is_superuser %}
-          <li class="sub-menu ">
+          <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="icon_documents_alt"></i>
                           <span>Accounts</span>
@@ -146,13 +146,22 @@
                       </a>
             <ul class="sub">
               <li><a class="" href="{% url 'accounts:voucher' %}">Transactions</a></li>
-              <li><a class="" href="{% url 'accounts:duplicate' %}"><span>Utilites</span></a></li>
+                  <nav class="nav nav-pills flex-column">
+                  <a class="nav-link ml-3" href={% url 'accounts:voucher' %}><small>Payment</small></a>
+                  <a class="nav-link ml-3" href={% url 'accounts:receipt' %}><small>Receipt</small></a>
+                  </nav>
+              <li><a class="" href="{% url 'accounts:dplct' %}"><span>Utilites</span></a></li>
+                  <nav class="nav nav-pills flex-column">
+                  <a class="nav-link ml-3" href={% url 'accounts:delete' %}><small>Voucher Cancellation</small></a>
+                  <a class="nav-link ml-3" href={% url 'accounts:dplct' %}><small>Duplicate Voucher</small></a>
+                  <a class="nav-link ml-3" href={% url 'accounts:acchead' %}><small>Accounts Head Creator<small></a>
+                  </nav>
               <li><a class="" href="{% url 'accounts:delete' %}"><span>Reports</span></a></li>
             </ul>
           </li>
           {% endif %}
-        </ul>
-        <!-- sidebar menu end-->
+        </ul> 
+        <!-- sidebar menu end--> 
       </div>
     </aside>
     <!--sidebar end-->
@@ -194,11 +203,9 @@
   </div>
 </div>
 
-
-
 {% endif %}
 
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid"> 
   <div class="container">
     <h3 class="display-4">WAREHOUSE DASHBOARD</h1>
       <br>

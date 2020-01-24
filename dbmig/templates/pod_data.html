@@ -16,7 +16,6 @@
                     <br>
                     <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'app:pod' %}">
                         <div class="form-group">
-                        Trip number
                         <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
                         </div>
                         <button type="submit" class="btn btn-default">Search</button>
@@ -28,40 +27,22 @@
           </div>
         <br>
         <br>
-        <div class ="container">
+        <div class = "display">
             <div class="row">
-                <div class="col">
-                    <div class="panel panel-default">
-                    {% if lrdtls %}
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>LR no</th>
-                                <th>Consignee</th>
-                                <th>Location</th>
-                                <th>LR Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for i in lrdtls %}
-                                <tr>
-                                    <td><a href="{% url 'app:podc' %}">{{ i.lrtran_waybillno }}</a></td>
-                                    <td>{{ i.lrtran_consgnepntr.consgnem_name }}</td>
-                                    <td>{{ i.lrtran_consgnepntr.consgnem_district }}</td>
-                                    <td>{{ i.lrtran_tripstatus }} </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    {% endif %}
-                    </div>
-                </div>
+            <div class="column" style="background-color:#aaa;">
+                LR number: {{ tlink.lrtran_waybillno }}
+            </div>
+            <div class="column" style="background-color:#bbb;">
+
             </div>
         </div>
-        
 
-              
-  <script src="{% static 'app/js/jquery.js' %}"></script>
+
+
+
+
+
+ <script src="{% static 'app/js/jquery.js' %}"></script>
   <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
   <!-- nice scroll -->
   <script src="{% static 'app/js/jquery.scrollTo.min.js' %}"></script>
@@ -79,6 +60,23 @@ form
     width:250px;
     padding-top:100px;
     color: #fff;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 </style>
 

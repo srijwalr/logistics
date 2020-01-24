@@ -205,6 +205,9 @@ class Productmaster(models.Model):
     promas_maketime = models.DateTimeField(blank=True, null=True)
     promas_clntcode = models.IntegerField(blank=True, null=True)
 
+    def __str__(self):
+        return self.promas_code
+    
     # class Meta:
     #     db_table = 'productmaster'        
 

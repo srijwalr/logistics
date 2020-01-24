@@ -23,46 +23,6 @@
         <br>
         <br>
 
-
-            <div class="row">
-                <div class="col">
-                    <div class="panel panel-default">
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>LR number</th>
-                                <th>Account head</th>
-                                <th>To pay</th>
-                                <th>Amount</th>
-                                <th>Narration</th>
-                                <th>Action<th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for lr in lr_list %}
-                                <tr>
-                                    <td>{{ lr.act_vrno }}</td>
-                                    <td>{{ lract_acc_code.acc_name }}</td>
-                                    <td>{{ lr.act_pay }}</td>
-                                    <td>{{ lr.act_narration }} </td>
-                                    <td>
-                                        <form action="{% url 'app:delete_lr' lr.id %}" onclick="return confirm('Are you sure you want to delete this item?');" style="display: inline;">
-                                            {% csrf_token %}
-                                            <input type="hidden" name="lr_id" value="{{ lr.id }}" />
-                                            <button type="submit" class="btn btn-danger btn-xs">
-                                            <span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
-                                            </button>
-                                        </form>                                        
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    </div>
-                </div>
-            </div>
-              
   <script src="{% static 'app/js/jquery.js' %}"></script>
   <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
   <!-- nice scroll -->

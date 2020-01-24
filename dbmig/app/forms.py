@@ -71,11 +71,11 @@ class LrtransationForm(forms.ModelForm):
 
     class Meta:
         model = Lrtransation
-        fields = ('lrtran_consgnrpntr','lrtran_frtyppntr','lrtran_vehmaspntr','lrtran_vehcatpntr','lrtran_driverdtls','lrtran_frtypebillno')
+        fields = ('lrtran_whmpntr','lrtran_frtyppntr','lrtran_vehmaspntr','lrtran_vehcatpntr','lrtran_driverdtls','lrtran_frtypebillno')
     
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.fields['lrtran_consgnrpntr'].queryset = Lrtransation.objects.none()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['lrtran_vehmaspntr'].widget = forms.TextInput()
 
 # class LrdocumentForm(forms.ModelForm):
 

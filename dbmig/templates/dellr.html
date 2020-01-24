@@ -1,5 +1,5 @@
 {% extends "dash.html" %}
-{% block title %}::Duplicate LR Print::{% endblock %}
+{% block title %}::LR cancellation::{% endblock %}
 {% block transactions %}active{% endblock %}
 {% load static %}
 {% load crispy_forms_tags %}
@@ -7,29 +7,27 @@
 {% block content %}
 
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div id="home" class="container tab-pane active"><br>
+
         <div class="container">
+        <div class = "row">
+            <h2> LR Cancellation</h2>
+                <br>
+                <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'app:deletelr' %}">
+                    <div class="form-group">
+                    <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
+                    </div>
+                    <button type="submit" class="btn btn-default">Find LR</button>
+                </form>
+        </div>
+        <br>
+        <br>
+        <br>
+
+
             <div class="row">
                 <div class="col">
-                    <h2> Duplicate LR</h2>
-                    <br>
-                    <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'app:duplicate' %}">
-                        <div class="form-group">
-                        <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
-                    </div>
-                        <button type="submit" class="btn btn-default">Find LR</button>
-                </form>
-
-                <br>
-            <br>
-            <br>
-    </div>    
-                <div class="row">
-                <div class="col">
                     <div class="panel panel-default">
-                     {% if lrdtls %}
+                    {% if lrdtls %}
                     <table class="table">
                         <thead>
                             <tr>
@@ -52,7 +50,7 @@
                                     <td>{{ i.lrtran_vehmaspntr }} </td>
                                     <td>{{ i.lrtran_vehcatpntr }} </td>
                                     <td>
-                                        <a href="{{ '/media/LrMultipleWPCOTP2704.pdf' }}">Print</button></a></p>
+                                      <a href="#">Delete</button></a></p>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -61,7 +59,7 @@
                     {% endif %}
                     </div>
                 </div>
-            </div>      
+            </div>
               
   <script src="{% static 'app/js/jquery.js' %}"></script>
   <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
@@ -83,6 +81,7 @@ container
     padding-top:100px;
     color: #fff;
 }
+
 </style>
 
 {% endblock %}

@@ -90,7 +90,16 @@
                       </a>
             <ul class="sub">
               <li><a class="" href="{% url 'accounts:voucher' %}">Transactions</a></li>
-              <li><a class="" href="{% url 'accounts:duplicate' %}"><span>Utilites</span></a></li>
+                  <nav class="nav nav-pills flex-column">
+                  <a class="nav-link ml-3" href={% url 'accounts:voucher' %}><small>Payment</small></a>
+                  <a class="nav-link ml-3" href={% url 'accounts:receipt' %}><small>Receipt</small></a>
+                  </nav>
+              <li><a class="" href="{% url 'accounts:dplct' %}"><span>Utilites</span></a></li>
+                  <nav class="nav nav-pills flex-column">
+                  <a class="nav-link ml-3" href={% url 'accounts:delete' %}><small>Voucher Cancellation</small></a>
+                  <a class="nav-link ml-3" href={% url 'accounts:dplct' %}><small>Duplicate Voucher</small></a>
+                  <a class="nav-link ml-3" href={% url 'accounts:acchead' %}><small>Accounts Head Creator<small></a>
+                  </nav>
               <li><a class="" href="{% url 'accounts:delete' %}"><span>Reports</span></a></li>
             </ul>
           </li>

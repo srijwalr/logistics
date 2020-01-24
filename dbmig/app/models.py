@@ -8,7 +8,6 @@ from django.forms.models import model_to_dict
 from django.utils.timezone import now
 
 
-
 class Returnlrtranslink(models.Model):
     # retrn_id = models.AutoField(primary_key=True)
     retrn_waybillpntr = models.CharField(max_length=150, blank=True, null=True)
@@ -402,7 +401,7 @@ class Lrtransation(models.Model):
     lrtran_waybillno = models.CharField(max_length=50, blank=True, null=True)
     lrtran_invdate = models.CharField(max_length=10, blank=True, null=True)
     lrtran_date = models.DateField(blank=True, null=True)
-    lrtran_consgnrpntr = models.ForeignKey(Cosingnormaster,verbose_name='Consignor', blank = True, null = True, on_delete = models.CASCADE)
+    lrtran_consgnrpntr = models.ForeignKey(Cosingnormaster, blank = True, null = True, on_delete = models.CASCADE)
     lrtran_consgnepntr = models.ForeignKey(Cosingneemaster ,verbose_name='Consignee', blank = True, null = True, on_delete = models.CASCADE)
     lrtran_invidpntr = models.IntegerField(blank=True, null=True)
     lrtran_frtyppntr = models.ForeignKey(Freighttypes ,verbose_name='Freight Type', blank = True, null = True, on_delete = models.CASCADE)
@@ -417,7 +416,7 @@ class Lrtransation(models.Model):
     lrtran_courchargenarration = models.CharField(max_length=300, blank=True, null=True)
     lrtran_coutaddcharge = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
     lrtran_coutaddchargenarration = models.CharField(max_length=300, blank=True, null=True)
-    lrtran_whmpntr = models.ForeignKey(Companywarehousemaster,verbose_name='Warehouse', blank = True, null = True, on_delete = models.CASCADE)
+    lrtran_whmpntr = models.ForeignKey(Companywarehousemaster,verbose_name='Consignor', blank = True, null = True, on_delete = models.CASCADE)
     lrtran_authorise = models.CharField(max_length=1, blank=True, null=True)
     lrtran_slno = models.IntegerField(blank=True, null=True)
     lrtran_active = models.CharField(max_length=1, blank=True, null=True)
@@ -445,7 +444,7 @@ class Lrtransation(models.Model):
 def _pre_delete_receiver(sender, instance, **kwargs):
     # instance = Lrtransation.objects.get(id = 'id')
     # kwargs = model_to_dict(instance, exclude=['id','lrtran_driverdtls'])
-
+    
     new_instance = LogLrtransation()
 
     new_instance.log_lrtran_waybillno = instance.lrtran_waybillno
@@ -496,7 +495,7 @@ class Lrtranslink(models.Model):
     trans_authorize = models.CharField(max_length=1, blank=True, null=True)
     trans_maketime = models.CharField(max_length=12, blank=True, null=True)
     trans_makerid = models.IntegerField(blank=True, null=True)
-
+    
 #     class Meta:
 #         managed = False    
 

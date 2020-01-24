@@ -109,7 +109,7 @@
                       </a>
             <ul class="sub">
               <li><a class="" href="{% url 'app:lr' %}">Lorry Receipt</a></li>
-              <li><a class="" href="#">Return Receipt</a></li>
+              <li><a class="" href="{% url 'app:rreceipt' %}">Return Receipt</a></li>
               <li><a class="" href="{% url 'app:podc' %}">POD Closure</a></li>
             </ul>
           </li>
@@ -139,7 +139,7 @@
           </li>
           <!-- {% if request.user.is_superuser %}
           <li class="sub-menu ">
-            <a href="javascript:;" class="">
+            <a href="javascript:;" class=""> 
                           <i class="icon_documents_alt"></i>
                           <span>Accounts</span>
                           <span class="menu-arrow arrow_carrot-right"></span>

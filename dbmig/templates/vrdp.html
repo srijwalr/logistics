@@ -1,11 +1,10 @@
 {% extends "dash.html" %}
-{% block title %}::Duplicate LR Print::{% endblock %}
+{% block title %}::Duplicate Voucher::{% endblock %}
 {% block transactions %}active{% endblock %}
 {% load static %}
 {% load crispy_forms_tags %}
 
 {% block content %}
-
 
   <!-- Tab panes -->
   <div class="tab-content">
@@ -13,46 +12,42 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h2> Duplicate LR</h2>
+                    <h2>Duplicate Voucher</h2>
                     <br>
-                    <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'app:duplicate' %}">
+                    <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'accounts:dplct' %}">
                         <div class="form-group">
                         <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
                     </div>
-                        <button type="submit" class="btn btn-default">Find LR</button>
+                        <button type="submit" class="btn btn-default">Find Voucher no.</button>
                 </form>
-
                 <br>
             <br>
             <br>
-    </div>    
-                <div class="row">
+    </div>   
+
+            <div class="row">
                 <div class="col">
                     <div class="panel panel-default">
-                     {% if lrdtls %}
+                    {% if vouchers %}
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>LR number</th>
-                                <th>LR Date</th>
-                                <th>Trip number</th>
-                                <th>Route type<th>
-                                <th>Vehicle number<th>
-                                <th>Vehicle size<th>
+                                <th>Voucher number</th>
+                                <th>Account head</th>
+                                <th>To pay</th>
+                                <th>Narration</th>
                                 <th>Action<th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for i in lrdtls %}
+                            {% for i in vouchers %}
                                 <tr>
-                                    <td>{{ i.lrtran_waybillno }}</td>
-                                    <td>{{ i.lrtran_date }}</td>
-                                    <td>{{ i.lrtran_frtypebillno }}</td>
-                                    <td>{{ i.lrtran_frtyppntr }} </td>
-                                    <td>{{ i.lrtran_vehmaspntr }} </td>
-                                    <td>{{ i.lrtran_vehcatpntr }} </td>
+                                    <td>{{ i.act_vrno }}</td>
+                                    <td>{{ i.act_acc_code }}</td>
+                                    <td>{{ i.act_pay }}</td>
+                                    <td>{{ i.act_narration }} </td>
                                     <td>
-                                        <a href="{{ '/media/LrMultipleWPCOTP2704.pdf' }}">Print</button></a></p>
+                                      <a href="{{ '/media/VOUCHERHO812.pdf' }}">Print</button></a></p>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -61,7 +56,16 @@
                     {% endif %}
                     </div>
                 </div>
-            </div>      
+            </div>
+            </div>
+            </div>
+            </div>            
+        </div>
+    </div>
+  </div>
+</div>
+
+
               
   <script src="{% static 'app/js/jquery.js' %}"></script>
   <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
@@ -74,8 +78,8 @@
 <style>
 h2
 {
-    color: #fff;
     padding-top:100px;
+    color: #fff;
 }
 container
 {

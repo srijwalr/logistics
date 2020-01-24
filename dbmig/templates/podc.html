@@ -40,7 +40,12 @@ function hideShow(){
     {% csrf_token %}
     <br>
     Please upload the Proof of Delivery
-    {{ form|crispy }}
+    {{ form|crispy }}<br>
+    Trip Status<select> 
+      <option value="O">Open</option>
+      <option value="C">Closed</option>
+    </select>
+    <br>
     <br>
     <br>
     <input style = "border-radius:6px;" type="submit" class="button-primary" value="Upload">
@@ -51,29 +56,6 @@ function hideShow(){
 </form>
 </div>
 
-<!-- <form>
-  <div class="row">
-    <div class="col">
-     Consignee:<input class="form-control-plaintext" type="text" placeholder="{{ user.username }} " readonly>
-    </div>
-    <br>
-    <div class="col">
-      Trip number:
-      <input type="text" class="form-control" placeholder="Trip number:">
-    </div>
-  </div>
-</form>
-    <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <h6>Purchase order closure file</h6>
-    <input type="file" name="myfile">
-    <br>
-p{
-    padding-top:100px;
-    padding-left:350px;  
-}
-    <button style = "border-radius: 6px; " type="submit">Upload</button>
-  </form> -->
     
 
               

@@ -44,61 +44,54 @@ class ReceiptView(CreateView):
         context['form1'] = AccountTransactionForm
         return context
 
-def duplicate(request):
-    if not request.user.is_authenticated:
-        return render(request, 'sign_in.html')
-    else:
+def copy(request):
+    vouchers = Accountstransaction.objects.none()
+    query = request.GET.get("q")
+    print(query)
+    if query:
         vouchers = Accountstransaction.objects.all()
-        query = request.GET.get("q")
-        if query:
-            vouchers = vouchers.filter(
-                Q(act_vrno__icontains=query)
-            ).distinct()
-            return render(request, 'vchrdplct.html', {  
-                'vouchers': vouchers,
-            })
-        else:
-            return render(request, 'duplicate.html', {'vouchers': vouchers})  
-
-
-# def excprint(request):
-#     if not request.user.is_authenticated:
-#         return render(request, 'sign_in.html')
-#     else:
-
-        # template_name = 'duplicate.html'
-        # model = Accountstransaction
-
-        # def get_queryset(self):
-        #     try:
-        #         vrno = self.kwargs['act_vrno']
-        #     except:
-        #         vrno = ''
-        #     if (vrno != ''):
-        #         object_list = self.model.objects.filter(name__icontains = vrno)
-        #     else:
-        #         object_list = self.model.objects.all()
-        #     # return object_list
-        #     return render(request, 'vchrdplct.html', {'object_list': object_list})    
+        vouchers = vouchers.filter(
+            Q(act_vrno__icontains=query)
+        ).distinct()
+        return render(request, 'vrdp.html', {
+            'vouchers': vouchers,
+        })
+    else:
+        return render(request, 'vchrdplct.html', {'vouchers': vouchers})
 
  
 
 def vrdata(request):
-    if not request.user.is_authenticated:
-        return render(request, 'sign_in.html')
+    vouchers = Accountstransaction.objects.none()
+    query = request.GET.get("q")
+    print(query)
+    if query:
+        vouchers = Accountstransaction.objects.all()
+        vouchers = vouchers.filter(
+            Q(act_vrno__icontains=query)
+        ).distinct()
+        return render(request, 'vrdp.html', {
+            'vouchers': vouchers,
+        })
     else:
-        vdate = datetime.date.today()
-        vouchers = Accountstransaction.objects.filter(act_makingtime = vdate)
-        return render(request, 'vrdelete.html', {
-            'voucher_list': vouchers,
-        })            
+        return render(request, 'vchrdplct.html', {'vouchers': vouchers})  
      
 
 
-def vrdelete(request, accountstransaction_id):
-    voucher = Accountstransaction.object.get(pk = accountstransaction_id) 
-    voucher.delete()
-    return render(request, 'dash.html')
+def vrdelete(request):
+    results = Accountstransaction.objects.none()
+    query = request.GET.get("q")
+    print(query)
+    if query:
+        results = Accountstransaction.objects.all()
+        results = results.filter(
+            Q(act_vrno__icontains=query)
+        ).distinct()
+        return render(request, 'vrdelete.html', {
+            'lrdtls': results,
+        })
+    else:
+        return render(request, 'vrdelete.html', {'lrdtls': results})
 
 
 class AccountsCreate(CreateView):

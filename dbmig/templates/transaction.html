@@ -24,7 +24,8 @@ function hideShow(){
     if(document.getElementById('id_act_acc_code').value == "6")
     {
         $('#id_act_lrno').hide();
-        alert("PLEASE DO NOT MENTION SALARY , OT , SUNDAY WORKING , Etc ... IN NARRATION. !!");
+        
+        $('div.frtalrt').show()
     }
     else if(document.getElementById('id_act_acc_code').value == "7")
     {
@@ -99,7 +100,6 @@ function hideShow(){
   </ul>
 
 
-
   <!-- Tab panes -->
   <div class="tab-content">
     <div id="home" class="container tab-pane active"><br>
@@ -108,6 +108,8 @@ function hideShow(){
                 <div class="col">
                     <h3 class="text-white mb-5">Payment Voucher</h3>
                     <br>
+                    <div class="frtalrt" style="display:none">PLEASE DO NOT MENTION SALARY , OT , SUNDAY WORKING , Etc ... IN NARRATION. !!</div>
+
                       <form method="post">
                         {% csrf_token %}
                         <div class="form-row">
@@ -174,6 +176,9 @@ container
 form{
   color: #fff;
   width: 500px;
+}
+.frtalrt{
+  text-align: right;
 }
 </style>
 {% endblock %}

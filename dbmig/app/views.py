@@ -35,6 +35,21 @@ import tempfile
 from xhtml2pdf import pisa 
 from django.template.loader import get_template 
 from django.template import Context 
+# from django.core.mail import send_mail
+
+# if form.is_valid():
+#     subject = form.cleaned_data['subject']
+#     message = form.cleaned_data['message']
+#     sender = form.cleaned_data['sender']
+#     cc_myself = form.cleaned_data['cc_myself']
+
+#     recipients = ['info@example.com']
+#     if cc_myself:
+#         recipients.append(sender)
+
+#     send_mail(subject, message, sender, recipients)
+#     return HttpResponseRedirect('/thanks/')
+
 
 def html_to_pdf_directly(request): 
     template = get_template("lrprint.html") 
@@ -88,16 +103,64 @@ def generate_pdf(request):
     return response
 
 def deletelr(request):
-   return render(request, "app/lrcancel.html", {})
+    lrdtls_results = Lrtransation.objects.none()
+    query = request.GET.get("q")
+    if query:
+        lrdtls_results = Lrtransation.objects.all()
+        lrdtls_results = lrdtls_results.filter(
+            Q(lrtran_waybillno__icontains=query)
+        ).distinct()
+        return render(request, 'dellr.html', {
+            'lrdtls': lrdtls_results,
+        })
+    else:
+        return render(request, 'app/lrcancel.html', {'lrdtls_results': lrdtls_results})
+    
 
+def rreceipt(request):    
+   return render(request, "rreceipt.html", {})
+    
 def duplicate(request):
-   return render(request, "app/lrduplct.html", {})
-
+    lrdtls_results = Lrtransation.objects.all()
+    query = request.GET.get("q")
+    if query:
+        lrdtls_results = lrdtls_results.filter(
+            Q(lrtran_waybillno__icontains=query)
+        ).distinct()
+        return render(request, 'duplicate.html', {
+            'lrdtls': lrdtls_results,
+        })
+    else:
+        return render(request, 'duplicate.html', {'lrdtls_results': lrdtls_results})
+            
 def change(request):
-   return render(request, "app/lrchange.html", {})
+    lrdtls_results = Lrtransation.objects.none()
+    query = request.GET.get("q")
+    if query:
+        lrdtls_results = Lrtransation.objects.all()
+        lrdtls_results = lrdtls_results.filter(
+            Q(lrtran_waybillno__icontains=query)
+        ).distinct()
+        return render(request, 'changevno.html', {
+            'lrdtls': lrdtls_results,
+        })  
+    else:
+        return render(request, 'app/lrchange.html', {'lrdtls_results': lrdtls_results})    
+
 
 def editvno(request):
-   return render(request, "app/vehicleno.html", {})
+    lrdtls_results = Lrtransation.objects.none()
+    query = request.GET.get("q")
+    if query:
+        lrdtls_results = Lrtransation.objects.all()
+        lrdtls_results = lrdtls_results.filter(
+            Q(lrtran_waybillno__icontains=query)
+        ).distinct()
+        return render(request, 'changelr.html', {
+            'lrdtls': lrdtls_results,
+        })  
+    else:
+        return render(request, 'app/vehicleno.html', {'lrdtls_results': lrdtls_results})        
 
 
 
@@ -200,21 +263,20 @@ def dash(request):
 #     else:
 #         form = CompanywarehouseForm
 #         return render(request, 'whm.html', {'form':form})
-
-class WhmCreate(CreateView):
+class WhmCreate(CreateView):    
 
     model = Companywarehousemaster 
+
     template_name = 'whm.html'
     success_url = reverse_lazy('app:dash')
     fields = ('com_wmasname','com_wmasdesc','com_wmasaddress','com_wmasactive','com_wmasremarks')
 
 def pod(request):
     lrdtls_results = Lrtransation.objects.all()
-    # song_results = Song.objects.all()
     query = request.GET.get("q")
     if query:
         lrdtls_results = lrdtls_results.filter(
-            Q(lrtran_frtypebillno__icontains=query)
+            Q(lrtran_waybillno__icontains=query)
         ).distinct()
         return render(request, 'poddisp.html', {
             'lrdtls': lrdtls_results,
@@ -239,15 +301,17 @@ class LrdocumentCreate(CreateView):
     #     })
     # return render(request, 'podc.html')
 
-def pod_data(request,**kwargs):
+class LrtransationDetailView(DetailView):
+    def get(self, request, *args, **kwargs):
+        tlink = get_object_or_404(Lrtransation, pk=kwargs['pk'])
+        context = {'tlink': tlink}
+        return render(request, 'pod_data.html', context)
 
-    id = kwargs['_id']
-    tlink = Lrtranslink.objects.filter(id=id).first()
-    songs = tlink.songs.all()
-    return render(request, 'pod_data.html', {
-        'song_list': songs,
-    })
+def pod_data(request,i_id):
 
+    tlink = get_object_or_404(Lrtransation, pk=i_id)
+    return render(request, 'pod_data.html', {'tlink': tlink})
+    
 # def lr(request):
 #     message=''
 #     if request.method == 'POST':
