@@ -9,7 +9,7 @@ django-crispy-forms==1.7.2
 django-excel==0.0.10
 django-report-builder==6.3.2
 django-weasyprint==0.5.4
-djangorestframework==3.10.2
+djangorestframework==3.11.2
 et-xmlfile==1.0.1
 html5lib==1.0.1
 jdcal==1.4.1
